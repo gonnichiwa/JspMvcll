@@ -1,15 +1,13 @@
 package board.model;
 
-import java.sql.Date;
-
 public class BoardDTO {
 	private int num;
 	private String name;
 	private String password;
 	private String subject;
 	private String content;
-	private Date write_date;
-	private Date write_time;
+	private String write_date;
+	private String write_time;
 	private int ref;
 	private int step;
 	private int lev;
@@ -46,16 +44,16 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWrite_date() {
+	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWrite_date(Date write_date) {
+	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
-	public Date getWrite_time() {
+	public String getWrite_time() {
 		return write_time;
 	}
-	public void setWrite_time(Date write_time) {
+	public void setWrite_time(String write_time) {
 		this.write_time = write_time;
 	}
 	public int getRef() {
@@ -88,5 +86,8 @@ public class BoardDTO {
 	public void setChild_cnt(int child_cnt) {
 		this.child_cnt = child_cnt;
 	}
+	
+	
+	
 	
 }

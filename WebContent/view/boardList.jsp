@@ -34,8 +34,8 @@
 				<a href="boardRead.bbs?num=${dto.num }">${dto.subject }</a>
 			</td>
 			<td>${dto.name }</td>
-			<td>${dto.writeDate}</td>
-			<td>${dto.writeTime}</td>
+			<td>${dto.write_date}</td>
+			<td>${dto.write_time}</td>
 			<td>${dto.read_cnt}</td>
 			<td>${dto.child_cnt}</td>
 		</tr>
@@ -45,7 +45,7 @@
 			<td colspan = "7">
 				<a href="boardList.bbs">[첫 페이지로]</a>
 				<c:forEach var="i" begin="1" end="${pageCnt }">
-					<a href="boardList.bbs?curPage="${i }">[${i}]</a>
+					<a href="boardList.bbs?curPage=${i}">[${i}]</a>
 				</c:forEach>
 			</td>
 		</tr>

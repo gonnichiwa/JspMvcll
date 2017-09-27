@@ -1,7 +1,6 @@
 package board.model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,6 +41,9 @@ public class BoardDAO {
 					+ "where rownum > ? and rownum < ?";
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println("curPage: " + curPage);
+			
 			pstmt.setInt(1, WRITING_PER_PAGE * (Integer.parseInt(curPage)-1));
 			pstmt.setInt(2, WRITING_PER_PAGE);
 			
@@ -55,8 +57,8 @@ public class BoardDAO {
 				String password = rs.getString("password");
 				String subject = rs.getString("subject");
 				String content = rs.getString("content");
-				Date write_date = rs.getDate("write_date");
-				Date write_time = rs.getDate("write_time");
+				String writeDate = rs.getString("write_date");
+				String writeTime = rs.getString("write_time");
 				int ref = rs.getInt("ref");
 				int step = rs.getInt("step");
 				int lev = rs.getInt("lev");
@@ -69,8 +71,8 @@ public class BoardDAO {
 				writing.setPassword(password);
 				writing.setSubject(subject);
 				writing.setContent(content);
-				writing.setWrite_date(write_date);
-				writing.setWrite_time(write_time);
+				writing.setWrite_date(writeDate);
+				writing.setWrite_time(writeTime);
 				writing.setRef(ref);
 				writing.setStep(step);
 				writing.setLev(lev);
