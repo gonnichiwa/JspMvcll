@@ -153,13 +153,22 @@ public class BoardDAO {
 				num = rs.getInt("num");
 			}
 			
+			String insertSql = "insert into BOARD (num,name,password,subject,content,write_date,write_time,ref,step,lev,read_cnt,child_cnt) "
+					+ "values (?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),to_char(sysdate,'hh24:mi:ss'),?,0,0,0,0)";
+			pstmt = conn.prepareStatement(insertSql);
 			
+			pstmt.setInt(1, num);
+			pstmt.setString(2, name);
+			pstmt.setString(3, password);
+			pstmt.setString(4, subject);
+			pstmt.setString(5, content);
+			pstmt.setInt(6, num);
 			
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
 			try {
 				if(rs !=null) rs.close();
 				if(pstmt != null) pstmt.close();
