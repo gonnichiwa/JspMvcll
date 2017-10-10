@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.command.BoardCmd;
 import board.command.BoardListCmd;
+import board.command.BoardReadCmd;
 import board.command.BoardWriteCmd;
 
 @WebServlet("*.bbs")
@@ -60,11 +61,16 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "/boardList.bbs";
 		}
 		
+		// 사용자가 선택한 글 열람
+		if(cmdURI.equals("/boardRead.bbs")){
+			cmd = new BoardReadCmd();
+			cmd.execute(request, response);
+			viewPage = "view/boardRead.jsp";
+		}
+		
+		
 		RequestDispatcher dis = request.getRequestDispatcher(viewPage);
 		dis.forward(request, response);
 		
 	}
-	
-	
-
 }

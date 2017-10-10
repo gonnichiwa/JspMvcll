@@ -197,4 +197,70 @@ public class BoardDAO {
 			}
 		}
 	}
+
+	public BoardDTO boardRead(String inputNum) {
+		// DTO 객체 생성
+		BoardDTO writing = new BoardDTO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			System.out.println("inputNum : " + inputNum);
+			// 글을 읽기때문에 선택한 row의 읽기 횟수를 1회 증가시킨다.
+			String sql = "update board set read_cnt = read_cnt + 1 where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(inputNum));
+			pstmt.executeUpdate();
+			
+			// 읽어온 글을 생성시킨 DTO 인스턴스에 담는다
+			String readSql = "select num, name, password, subject, content, write_date, write_time, ref, step, lev, read_cnt, child_cnt from board where num= ? ";
+			pstmt = conn.prepareStatement(readSql);
+			pstmt.setInt(1, Integer.parseInt(inputNum));
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				int num = rs.getInt("num");
+				String name = rs.getString("name");
+				String password = rs.getString("password");
+				String subject = rs.getString("subject");
+				String content = rs.getString("content");
+				String writeDate = rs.getString("write_date");
+				String writeTime = rs.getString("write_time");
+				int ref = rs.getInt("ref");
+				int step = rs.getInt("step");
+				int lev = rs.getInt("lev");
+				int read_cnt = rs.getInt("read_cnt");
+				int child_cnt = rs.getInt("child_cnt");
+				
+				writing.setNum(num);
+				writing.setName(name);
+				writing.setPassword(password);
+				writing.setSubject(subject);
+				writing.setContent(content);
+				writing.setWrite_date(writeDate);
+				writing.setWrite_time(writeTime);
+				writing.setRef(ref);
+				writing.setStep(step);
+				writing.setLev(lev);
+				writing.setRead_cnt(read_cnt);
+				writing.setChild_cnt(child_cnt);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return writing;
+	}
 }
