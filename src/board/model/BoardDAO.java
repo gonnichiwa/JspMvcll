@@ -140,12 +140,19 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		int num = 1; // 가장 최근 작성된 글번호를 알아오기 위한 글번호 변수
+		
 		try {
 			conn = ds.getConnection();
 			String sql = "select NVL(max(num),0)+1 as num from board";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				num = rs.getInt("num");
+			}
+			
 			
 			
 			
