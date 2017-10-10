@@ -42,8 +42,6 @@ public class BoardDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println("curPage: " + curPage);
-			
 			pstmt.setInt(1, WRITING_PER_PAGE * (Integer.parseInt(curPage)-1));
 			pstmt.setInt(2, WRITING_PER_PAGE);
 			
@@ -133,14 +131,13 @@ public class BoardDAO {
 		return pageCnt;
 	}
 	
-	// 게시판 쓰기 기능 구현
-	public void insertData(String subject, String name, String password, String content) {
+	// 새 글을 작성하기 위한 글번호 받아오기
+	public int getInsertDataNumber() {
+		int num = 1;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		int num = 1; // 가장 최근 작성된 글번호를 알아오기 위한 글번호 변수
 		
 		try {
 			conn = ds.getConnection();
@@ -153,9 +150,32 @@ public class BoardDAO {
 				num = rs.getInt("num");
 			}
 			
-			String insertSql = "insert into BOARD (num,name,password,subject,content,write_date,write_time,ref,step,lev,read_cnt,child_cnt) "
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs !=null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return num;
+	}
+	
+	
+	// 게시판 쓰기 기능 구현
+	public void insertData(String subject, String name, String password, String content, int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "insert into BOARD (num,name,password,subject,content,write_date,write_time,ref,step,lev,read_cnt,child_cnt) "
 					+ "values (?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),to_char(sysdate,'hh24:mi:ss'),?,0,0,0,0)";
-			pstmt = conn.prepareStatement(insertSql);
+			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, num);
 			pstmt.setString(2, name);
@@ -170,7 +190,6 @@ public class BoardDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs !=null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {

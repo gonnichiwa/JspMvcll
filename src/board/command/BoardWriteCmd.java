@@ -18,8 +18,11 @@ public class BoardWriteCmd implements BoardCmd {
 		String password = request.getParameter("password");
 		String content = request.getParameter("content");
 		
+		// 새 글을 작성하기 위한 글번호 받아오기
+		int num = dao.getInsertDataNumber();
+		
 		// 받은 내용을 DB에 인서트 시킨다!
-		dao.insertData(subject,name,password,content);
+		dao.insertData(subject,name,password,content,num);
 	}
 
 }
