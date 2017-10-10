@@ -198,6 +198,7 @@ public class BoardDAO {
 		}
 	}
 
+	// DB에 접근하여 선택한 글번호로 읽기 기능 구현
 	public BoardDTO boardRead(String inputNum) {
 		// DTO 객체 생성
 		BoardDTO writing = new BoardDTO();
