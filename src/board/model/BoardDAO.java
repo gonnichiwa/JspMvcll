@@ -142,6 +142,7 @@ public class BoardDAO {
 		
 		try {
 			conn = ds.getConnection();
+			String sql = "select NVL(max(num),0)+1 as num from board";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
