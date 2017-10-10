@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.command.BoardCmd;
 import board.command.BoardListCmd;
+import board.command.BoardWriteCmd;
 
 @WebServlet("*.bbs")
 public class BoardFrontController extends HttpServlet {
@@ -45,6 +46,18 @@ public class BoardFrontController extends HttpServlet {
 			cmd = new BoardListCmd();
 			cmd.execute(request, response);
 			viewPage = "view/boardList.jsp";
+		}
+		
+		// 새글 쓰기를 눌렀을 때 글 쓰기 페이지 출력
+		if(cmdURI.equals("/boardWriteForm.bbs")){
+			viewPage = "view/boardWrite.jsp";
+		}
+		
+		// 새글 등록
+		if(cmdURI.equals("/boardWrite.bbs")){
+			cmd = new BoardWriteCmd();
+			cmd.execute(request, response);
+			viewPage = "/boardList.bbs";
 		}
 		
 		RequestDispatcher dis = request.getRequestDispatcher(viewPage);

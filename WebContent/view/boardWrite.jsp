@@ -21,7 +21,7 @@
 				<td>작성자</td>
 				<td><input type="text" name="name" maxlength="20" size="20"></td>
 				<td>비밀번호</td>
-				<td><input type="text" name="name" maxlength="20" size="20"></td>
+				<td><input type="text" name="password" maxlength="20" size="20"></td>
 			</tr>
 			<tr>
 				<td>본문</td>
