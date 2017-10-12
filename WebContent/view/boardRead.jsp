@@ -25,8 +25,8 @@
 	</tr>
 	<tr>
 		<td colspan="4" align="right">
-			<a href="boardUpdatePassword.bbs?num=${boardRead.num }">[수정]</a>
-			<a href="boardDeletePassword.bbs?num=${boardRead.num }">[삭제]</a>
+			<a href="boardUpdatePasswordChk.bbs?num=${boardRead.num }">[수정]</a>
+			<a href="boardDeletePasswordChk.bbs?num=${boardRead.num }">[삭제]</a>
 			<a href="boardReplyForm.bbs?num=${boardRead.num }">[답글]</a>
 		</td>
 	</tr>
