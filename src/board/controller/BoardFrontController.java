@@ -75,10 +75,10 @@ public class BoardFrontController extends HttpServlet {
 		/*************************/
 
 		// 게시글의 수정 (boardRead.jsp 참조하여 요청 URL을 파악한다.)
-		// 1. 게시글 수정 페이지 (boardUpdateForm.jsp)를 띄우면서 사용자가 선택한 글이 보여야 한다.( 비번 제외 )
-		// 2. 사용자가 게시글을 수정하고 비번을 입력하여 게시글 수정을 눌렀을 때
-		// 사용자가 입력한 비번이 일치할 시 -- 3. boardList.bbs 바로 호출
+		// 1. 사용자가 게시글을 수정버튼을 눌렀을 때 게시글 수정을 위한 비번 확인 페이지 (boardUpdatePasswordChk.jsp)를 띄운다.
+		// 사용자가 입력한 비번이 일치할 시 -- boardList.bbs 바로 호출
 		// 사용자가 입력한 비번이 불일치할 시 비번이 틀렸다는 페이지(boardUpdateError.jsp) 띄우고 요청 끝냄
+		// 2. 게시글 수정 페이지 (boardUpdateForm.jsp)를 띄우면서 사용자가 선택한 글이 보여야 한다.( 비번 제외 )
 		
 		
 		// 게시글의 삭제 (boardRead.jsp 참조하여 요청 URL을 파악한다.)
