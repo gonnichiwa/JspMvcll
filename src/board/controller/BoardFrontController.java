@@ -68,7 +68,12 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "view/boardRead.jsp";
 		}
 		
-		// 글 수정
+		/* 글 수정 */
+		
+		// 수정할 글번호 비번확인 페이지로 넘기기
+		if(cmdURI.equals("/boardUpdatePasswordChk.bbs")){
+			viewPage = "view/boardUpdatePasswordChk.jsp";
+		}
 		
 		
 		// 글 삭제
