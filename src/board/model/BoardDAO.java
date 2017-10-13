@@ -308,4 +308,58 @@ public class BoardDAO {
 		}
 		return isTrue;
 	}
+
+	// 해당 글번호의 내용 가져오기
+	public BoardDTO getUpdateContent(String inputNum) {
+		// 글내용 담을 객체 인스턴스 생성
+		BoardDTO writing = new BoardDTO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "select num,name,password,subject,content,Write_date,Write_time,ref,step,lev,read_cnt,child_cnt from board where num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, inputNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				int num = rs.getInt("num");
+				String name = rs.getString("name");
+				String password = rs.getString("password");
+				String subject = rs.getString("subject");
+				String content = rs.getString("content");
+				String writeDate = rs.getString("write_date");
+				String writeTime = rs.getString("write_time");
+				int ref = rs.getInt("ref");
+				int step = rs.getInt("step");
+				int lev = rs.getInt("lev");
+				int read_cnt = rs.getInt("read_cnt");
+				int child_cnt = rs.getInt("child_cnt");
+				
+				writing.setNum(num);
+				writing.setName(name);
+				writing.setPassword(password);
+				writing.setSubject(subject);
+				writing.setContent(content);
+				writing.setWrite_date(writeDate);
+				writing.setWrite_time(writeTime);
+				writing.setRef(ref);
+				writing.setStep(step);
+				writing.setLev(lev);
+				writing.setRead_cnt(read_cnt);
+				writing.setChild_cnt(child_cnt);
+			}
+			
+		} catch (Exception e) {
+
+		} finally {
+			
+		}
+		
+		return writing;
+	}
 }

@@ -13,6 +13,7 @@ import board.command.BoardCmd;
 import board.command.BoardListCmd;
 import board.command.BoardPasswordChkCmd;
 import board.command.BoardReadCmd;
+import board.command.BoardUpdateFormCmd;
 import board.command.BoardUpdateFrmCmd;
 import board.command.BoardWriteCmd;
 
@@ -87,15 +88,19 @@ public class BoardFrontController extends HttpServlet {
 			
 			// Cmd 클래스로 값비교 하여 받은 passwordCheck 값에 따라 다음 요청 분기
 			if(checkCmd.passwordCheck){
-				System.out.println("입력 비번 결과 일치");
-//				viewPage = "/boardUpdateForm.bbs";
+				viewPage = "/boardUpdateForm.bbs";
 			} else {
-				System.out.println("입력 비번 결과 xxxxxxxxxxx");
-//				viewPage = "/boardPwdError.bbs";
+				viewPage = "/boardPwdError.bbs";
 			}
 		}
 		
-		
+		// 입력 비번 맞았을 때 : 글 수정 페이지로 요청 및 원래 글 내용 출력 
+		if(cmdURI.equals("/boardUpdateForm.bbs")){
+			cmd = new BoardUpdateFormCmd();
+			cmd.execute(request, response);
+			viewPage = "view/boardUpdateForm.jsp";
+		}
+
 		// 글 삭제
 		
 		
