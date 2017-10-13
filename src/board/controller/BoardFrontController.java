@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.command.BoardCmd;
 import board.command.BoardListCmd;
+import board.command.BoardPasswordChkCmd;
 import board.command.BoardReadCmd;
 import board.command.BoardUpdateFrmCmd;
 import board.command.BoardWriteCmd;
@@ -76,6 +77,13 @@ public class BoardFrontController extends HttpServlet {
 			cmd = new BoardUpdateFrmCmd();
 			cmd.execute(request, response);
 			viewPage = "view/boardUpdatePasswordChk.jsp";
+		}
+		
+		// 사용자 입력 비번 비교하여 다음 요청 (boardUpdateForm.jsp OR boardUpdateError.jsp)로 넘기기
+		if(cmdURI.equals("/boardUpdatePasswordChk.bbs")){
+			cmd = new BoardPasswordChkCmd();
+			cmd.execute(request, response);
+			viewPage = "/boardUpdateForm.bbs";
 		}
 		
 		
