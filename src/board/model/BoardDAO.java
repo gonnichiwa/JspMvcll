@@ -264,4 +264,48 @@ public class BoardDAO {
 		
 		return writing;
 	}
+
+	// (수정/삭제용) 선택 글번호의 사용자 입력 패스워드 비교
+	public boolean isPasswordOk(String inputNum, String inputPassword) {
+		
+		boolean isTrue = false;
+		String pwd = "";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "select password from board where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, inputNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				pwd = rs.getString(1);
+			}
+			
+			// 입력 패스워드와 DB 패스워드 비교
+			if(inputPassword.equals(pwd)){
+				System.out.println("입력 비번 결과 일치");
+				isTrue = true;
+			} else {
+				System.out.println("입력 비번 결과 xxxxxxxxx");
+				isTrue = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return isTrue;
+	}
 }

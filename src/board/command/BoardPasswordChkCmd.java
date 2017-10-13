@@ -3,6 +3,8 @@ package board.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.BoardDAO;
+
 public class BoardPasswordChkCmd implements BoardCmd {
 
 	public boolean passwordCheck;
@@ -11,7 +13,9 @@ public class BoardPasswordChkCmd implements BoardCmd {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String inputNum = request.getParameter("num");
-		String password = request.getParameter("password");
+		String inputPassword = request.getParameter("password");
+		
+		passwordCheck = new BoardDAO().isPasswordOk(inputNum,inputPassword);
 
 	}
 

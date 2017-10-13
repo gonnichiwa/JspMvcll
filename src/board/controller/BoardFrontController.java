@@ -73,7 +73,7 @@ public class BoardFrontController extends HttpServlet {
 		/* 글 수정 */
 		
 		// 수정할 글번호 비번확인 페이지로 넘기기
-		if(cmdURI.equals("/boardUpdatePasswordChk.bbs")){
+		if(cmdURI.equals("/boardUpdatePasswordFrm.bbs")){
 			cmd = new BoardUpdateFrmCmd();
 			cmd.execute(request, response);
 			viewPage = "view/boardUpdatePasswordChk.jsp";
@@ -83,7 +83,21 @@ public class BoardFrontController extends HttpServlet {
 		if(cmdURI.equals("/boardUpdatePasswordChk.bbs")){
 			cmd = new BoardPasswordChkCmd();
 			cmd.execute(request, response);
-			viewPage = "/boardUpdateForm.bbs";
+			BoardPasswordChkCmd checkCmd = (BoardPasswordChkCmd) cmd;
+			
+			// Cmd 클래스로 값비교 하여 받은 passwordCheck 값에 따라 다음 요청 분기
+			if(checkCmd.passwordCheck){
+				System.out.println("입력 비번 결과 일치");
+//				viewPage = "/boardUpdateForm.bbs";
+			} else {
+				System.out.println("입력 비번 결과 xxxxxxxxxxx");
+//				viewPage = "/boardPwdError.bbs";
+			}
+		}
+		
+		// 패스워드 비교 성공 요청 (업데이트 할 내용 입력 폼)
+		if(cmdURI.equals("/boardUpdateForm.bbs")){
+			viewPage = "view/boardUpdateError.jsp";
 		}
 		
 		
