@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import board.command.BoardCmd;
 import board.command.BoardListCmd;
 import board.command.BoardReadCmd;
+import board.command.BoardUpdateFrmCmd;
 import board.command.BoardWriteCmd;
 
 @WebServlet("*.bbs")
@@ -72,6 +73,8 @@ public class BoardFrontController extends HttpServlet {
 		
 		// 수정할 글번호 비번확인 페이지로 넘기기
 		if(cmdURI.equals("/boardUpdatePasswordChk.bbs")){
+			cmd = new BoardUpdateFrmCmd();
+			cmd.execute(request, response);
 			viewPage = "view/boardUpdatePasswordChk.jsp";
 		}
 		
