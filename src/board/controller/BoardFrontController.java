@@ -95,11 +95,6 @@ public class BoardFrontController extends HttpServlet {
 			}
 		}
 		
-		// 패스워드 비교 성공 요청 (업데이트 할 내용 입력 폼)
-		if(cmdURI.equals("/boardUpdateForm.bbs")){
-			viewPage = "view/boardUpdateError.jsp";
-		}
-		
 		
 		// 글 삭제
 		
