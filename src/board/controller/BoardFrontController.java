@@ -68,6 +68,11 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "view/boardRead.jsp";
 		}
 		
+		// 글 수정
+		
+		
+		// 글 삭제
+		
 		
 		
 		RequestDispatcher dis = request.getRequestDispatcher(viewPage);
