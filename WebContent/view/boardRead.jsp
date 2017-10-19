@@ -41,7 +41,7 @@
 	<c:forEach items="${replyList }" var="rpyDto">
 	<tr>
 		<td>
-			${rpyDto.rpy_num } <!-- 댓글 이름 -->
+			${rpyDto.rpy_author } <!-- 댓글 이름 -->
 		</td>
 		<td>
 			${rpyDto.rpy_content } <!-- 댓글 내용 -->
