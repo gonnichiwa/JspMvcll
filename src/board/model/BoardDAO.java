@@ -399,4 +399,32 @@ public class BoardDAO {
 			}
 		}
 	}
+
+	// 선택한 글번호 기준 행 삭제
+	public void deleteContent(String inputNum) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "delete board where num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, inputNum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
+	}
 }

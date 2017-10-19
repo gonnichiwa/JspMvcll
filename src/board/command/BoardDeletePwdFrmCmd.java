@@ -11,7 +11,7 @@ public class BoardDeletePwdFrmCmd implements BoardCmd {
 		
 		System.out.println("num in DeletePwdFrmCmd : " + inputNum);
 		
-		request.setAttribute("inputNum", inputNum);
+		request.setAttribute("num", inputNum);
 	}
 
 }

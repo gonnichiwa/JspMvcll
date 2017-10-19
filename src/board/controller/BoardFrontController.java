@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.command.BoardCmd;
+import board.command.BoardDeleteCmd;
 import board.command.BoardDeletePwdFrmCmd;
 import board.command.BoardListCmd;
 import board.command.BoardPasswordChkCmd;
@@ -119,6 +120,26 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "view/boardDeletePasswordChk.jsp";
 		}
 		
+		// 삭제 비밀번호 입력 비교 하여 다음 페이지 분기
+		if(cmdURI.equals("/boardDeletePasswordChk.bbs")){
+			cmd = new BoardPasswordChkCmd();
+			cmd.execute(request, response);
+			BoardPasswordChkCmd checkCmd = (BoardPasswordChkCmd) cmd;
+			
+			// Cmd 클래스로 값비교 하여 받은 passwordCheck 값에 따라 다음 요청 분기
+			if(checkCmd.passwordCheck){
+				viewPage = "/boardDelete.bbs";
+			} else {
+				viewPage = "/boardPwdError.bbs";
+			}
+		}
+		
+		// 삭제 처리 후 목록 보기로 이동
+		if(cmdURI.equals("/boardDelete.bbs")){
+			cmd = new BoardDeleteCmd();
+			cmd.execute(request, response);
+			viewPage = "/boardList.bbs";
+		}
 		
 		
 		
