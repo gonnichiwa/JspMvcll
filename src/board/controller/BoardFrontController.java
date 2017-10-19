@@ -13,6 +13,7 @@ import board.command.BoardCmd;
 import board.command.BoardListCmd;
 import board.command.BoardPasswordChkCmd;
 import board.command.BoardReadCmd;
+import board.command.BoardUpdateCmd;
 import board.command.BoardUpdateFormCmd;
 import board.command.BoardUpdateFrmCmd;
 import board.command.BoardWriteCmd;
@@ -99,6 +100,13 @@ public class BoardFrontController extends HttpServlet {
 			cmd = new BoardUpdateFormCmd();
 			cmd.execute(request, response);
 			viewPage = "view/boardUpdateForm.jsp";
+		}
+		
+		// 글 수정 처리 후 목록보기 요청
+		if(cmdURI.equals("/boardUpdate.bbs")){
+			cmd = new BoardUpdateCmd();
+			cmd.execute(request, response);
+			viewPage = "/boardList.bbs";
 		}
 
 		// 글 삭제

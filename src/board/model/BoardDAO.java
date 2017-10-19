@@ -357,9 +357,46 @@ public class BoardDAO {
 		} catch (Exception e) {
 
 		} finally {
-			
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
-		
 		return writing;
+	}
+
+	// 수정 글 내용 업데이트하기
+	public void updateContent(String inputNum, String subject, String name, String password, String content) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "update board set subject = ?, content = ?, password = ?, name = ? where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, content);
+			pstmt.setString(3, password);
+			pstmt.setString(4, name);
+			pstmt.setString(5, inputNum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 }
