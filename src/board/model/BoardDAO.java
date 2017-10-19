@@ -427,4 +427,34 @@ public class BoardDAO {
 			}
 		}		
 	}
+
+	// 입력한 reply DB insert
+	public void insertReply(String parentNum, String replyAuthor, String replyContent) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "INSERT INTO reply (rpy_num,rpy_author,rpy_content,rpy_date,rpy_parent_num)" + 
+						" VALUES (seq_rpy_num.nextval,?,?,to_char(sysdate,'YYYY-MM-DD HH24:MI:SS'),?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, replyAuthor);
+			pstmt.setString(2, replyContent);
+			pstmt.setString(3, parentNum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
 }

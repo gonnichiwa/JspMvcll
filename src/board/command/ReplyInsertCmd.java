@@ -3,6 +3,8 @@ package board.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.BoardDAO;
+
 public class ReplyInsertCmd implements BoardCmd {
 
 	@Override
@@ -14,11 +16,10 @@ public class ReplyInsertCmd implements BoardCmd {
 		String replyAuthor = request.getParameter("rpyAuthor");
 		String replyContent = request.getParameter("rpycontent");
 		
-		// log
-		System.out.println("parentNum : " + parentNum);
-		System.out.println("replyAuthor : " + replyAuthor);
-		System.out.println("replyContent : " + replyContent);
-
+		
+		new BoardDAO().insertReply(parentNum,replyAuthor,replyContent);
+		
+		System.out.println("DB INSERT 완료");
 	}
 
 }
