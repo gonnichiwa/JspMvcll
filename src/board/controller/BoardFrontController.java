@@ -19,6 +19,7 @@ import board.command.BoardUpdateCmd;
 import board.command.BoardUpdateFormCmd;
 import board.command.BoardUpdateFrmCmd;
 import board.command.BoardWriteCmd;
+import board.command.ReplyInsertCmd;
 
 @WebServlet("*.bbs")
 public class BoardFrontController extends HttpServlet {
@@ -140,6 +141,17 @@ public class BoardFrontController extends HttpServlet {
 			cmd.execute(request, response);
 			viewPage = "/boardList.bbs";
 		}
+		
+		
+		/* 댓글 기능 */
+		
+		// 댓글 테이블 입력
+		if(cmdURI.equals("/boardReplyInsert.bbs")){
+			cmd = new ReplyInsertCmd();
+			cmd.execute(request, response);
+			viewPage = "";
+		}
+		
 		
 		
 		

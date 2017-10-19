@@ -31,8 +31,9 @@
 		</td>
 	</tr>
 </table>
-	<form action="" method="post">
-			<input type="text" name="rpyName" maxlength="10" size="10"/> <!-- 댓글 이름 -->
+	<form action="boardReplyInsert.bbs" method="post">
+			<input type="hidden" name="parentNum" value="${boardRead.num }"/>
+			<input type="text" name="rpyAuthor" maxlength="10" size="10"/> <!-- 댓글 이름 -->
 			<input type="text" name="rpycontent" size="40"/> <!-- 댓글 내용 -->
 			<input type="submit" value="댓글달기"/>
 	</form>
