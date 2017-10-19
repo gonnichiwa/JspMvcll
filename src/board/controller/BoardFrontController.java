@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.command.BoardCmd;
+import board.command.BoardDeletePwdFrmCmd;
 import board.command.BoardListCmd;
 import board.command.BoardPasswordChkCmd;
 import board.command.BoardReadCmd;
@@ -109,7 +110,16 @@ public class BoardFrontController extends HttpServlet {
 			viewPage = "/boardList.bbs";
 		}
 
-		// 글 삭제
+		/* 글 삭제 */
+		
+		// 삭제할 글번호 비번 확인 페이지로 넘기기
+		if(cmdURI.equals("/boardDeletePasswordFrm.bbs")){
+			cmd = new BoardDeletePwdFrmCmd();
+			cmd.execute(request, response);
+			viewPage = "view/boardDeletePasswordChk.jsp";
+		}
+		
+		
 		
 		
 		
