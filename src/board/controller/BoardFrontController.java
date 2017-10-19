@@ -149,7 +149,14 @@ public class BoardFrontController extends HttpServlet {
 		if(cmdURI.equals("/boardReplyInsert.bbs")){
 			cmd = new ReplyInsertCmd();
 			cmd.execute(request, response);
-			viewPage = "";
+			viewPage = "/boardGetReplys.bbs";
+		}
+		
+		// 해당 글의 모든 댓글을 보여준다.
+		if(cmdURI.equals("/boardGetReplys.bbs")){
+			cmd = new BoardReadCmd();
+			cmd.execute(request, response);
+			viewPage = "/boardRead.bbs";
 		}
 		
 		

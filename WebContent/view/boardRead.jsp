@@ -32,23 +32,25 @@
 	</tr>
 </table>
 	<form action="boardReplyInsert.bbs" method="post">
-			<input type="hidden" name="parentNum" value="${boardRead.num }"/>
+			<input type="hidden" name="num" value="${boardRead.num }"/>
 			<input type="text" name="rpyAuthor" maxlength="10" size="10"/> <!-- 댓글 이름 -->
 			<input type="text" name="rpycontent" size="40"/> <!-- 댓글 내용 -->
 			<input type="submit" value="댓글달기"/>
 	</form>
 <table>
+	<c:forEach items="${replyList }" var="rpyDto">
 	<tr>
 		<td>
-			댓글작성자이름 <!-- 댓글 이름 -->
+			${rpyDto.rpy_num } <!-- 댓글 이름 -->
 		</td>
 		<td>
-			댓글내용입니다. <!-- 댓글 내용 -->
+			${rpyDto.rpy_content } <!-- 댓글 내용 -->
 		</td>
 		<td>
-			2017-10-19 19:43:22 <!-- 댓글 내용 -->
+			${rpyDto.rpy_date } <!-- 댓글 내용 -->
 		</td>
 	</tr>
+	</c:forEach>
 </table>	
 </body>
 </html>

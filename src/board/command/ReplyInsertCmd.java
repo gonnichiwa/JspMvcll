@@ -12,14 +12,14 @@ public class ReplyInsertCmd implements BoardCmd {
 
 
 		// parameters
-		String parentNum = request.getParameter("parentNum");
+		String parentNum = request.getParameter("num");
 		String replyAuthor = request.getParameter("rpyAuthor");
 		String replyContent = request.getParameter("rpycontent");
 		
 		
 		new BoardDAO().insertReply(parentNum,replyAuthor,replyContent);
 		
-		System.out.println("DB INSERT 완료");
+//		System.out.println("DB INSERT 완료");
 	}
 
 }

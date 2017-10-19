@@ -441,7 +441,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, replyAuthor);
 			pstmt.setString(2, replyContent);
-			pstmt.setString(3, parentNum);
+			pstmt.setInt(3, Integer.parseInt(parentNum));
 			
 			pstmt.executeUpdate();
 			
@@ -456,5 +456,51 @@ public class BoardDAO {
 			}
 		}
 		
+	}
+
+	// 해당 글의 모든 댓글을 가져옴
+	public ArrayList<ReplyDTO> getReplyList(String inputNum) {
+		ArrayList<ReplyDTO> list = new ArrayList<ReplyDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			String sql = "select * from reply where rpy_parent_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(inputNum));
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				ReplyDTO writing = new ReplyDTO();
+				
+				writing.setRpy_num(rs.getInt(1));
+				writing.setRpy_author(rs.getString(2));
+				writing.setRpy_content(rs.getString(3));
+				writing.setRpy_date(rs.getString(4));
+				writing.setRpy_parent_num(rs.getString(5));
+				
+				list.add(writing);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				if(rs !=null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
 	}
 }
