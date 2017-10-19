@@ -30,6 +30,28 @@
 			<a href="boardReplyForm.bbs?num=${boardRead.num }">[답글]</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<input type="text" name="rpyName" maxlength="10" size="10"/> <!-- 댓글 이름 -->
+		</td>
+		<td>
+			<input type="text" name="rpycontent" size="40"/> <!-- 댓글 내용 -->
+		</td>
+		<td>
+			<input type="submit" value="댓글달기"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			댓글작성자이름 <!-- 댓글 이름 -->
+		</td>
+		<td>
+			댓글내용입니다. <!-- 댓글 내용 -->
+		</td>
+		<td>
+			2017-10-19 19:43:22 <!-- 댓글 내용 -->
+		</td>
+	</tr>
 </table>
 </body>
 </html>
