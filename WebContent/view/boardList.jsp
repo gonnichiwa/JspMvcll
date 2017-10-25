@@ -31,7 +31,7 @@
 				<c:forEach begin="1" end="${dto.lev }">
 				<%="&nbsp;&nbsp;" %>
 				</c:forEach>
-				<a href="boardRead.bbs?num=${dto.num }">${dto.subject }</a>
+				<a href="boardRead.bbs?num=${dto.num }">${dto.subject } <c:if test="${dto.replyCount > 0 }">[${dto.replyCount }]</c:if></a>
 			</td>
 			<td>${dto.name }</td>
 			<td>${dto.write_date}</td>

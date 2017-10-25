@@ -36,9 +36,11 @@ public class BoardDAO {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "select * from "
-					+ "(select num,name,password,subject,content,write_date,write_time,ref,step,lev,read_cnt,child_cnt from board order by ref desc, step asc) "
-					+ "where rownum > ? and rownum < ?";
+			String sql = "select "
+					+ "num,name,password,subject,content,write_date,write_time,ref,step,lev,read_cnt,child_cnt"
+						+ ", (select count(*) from reply where rpy_parent_num=board.num) as replyCount "
+					+ "from board "
+					+ "where rownum > ? and rownum < ? order by ref desc, step asc";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -46,7 +48,6 @@ public class BoardDAO {
 			pstmt.setInt(2, WRITING_PER_PAGE);
 			
 			rs = pstmt.executeQuery();
-			
 			
 			while(rs.next()){
 				
@@ -62,6 +63,9 @@ public class BoardDAO {
 				int lev = rs.getInt("lev");
 				int read_cnt = rs.getInt("read_cnt");
 				int child_cnt = rs.getInt("child_cnt");
+				int replyCount = rs.getInt("replyCount");
+				
+//				System.out.println("replyCount in BoardDAO : " + replyCount);
 				
 				BoardDTO writing = new BoardDTO();
 				writing.setNum(num);
@@ -76,6 +80,7 @@ public class BoardDAO {
 				writing.setLev(lev);
 				writing.setRead_cnt(read_cnt);
 				writing.setChild_cnt(child_cnt);
+				writing.setReplyCount(replyCount);
 				
 				list.add(writing);
 				

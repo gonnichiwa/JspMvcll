@@ -13,7 +13,15 @@ public class BoardDTO {
 	private int lev;
 	private int read_cnt;
 	private int child_cnt;
+	private int replyCount;
 	
+	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	public int getNum() {
 		return num;
 	}
