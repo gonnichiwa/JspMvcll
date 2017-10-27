@@ -508,4 +508,10 @@ public class BoardDAO {
 		
 		return list;
 	}
+	
+	// 선택 댓글 삭제
+	public void deleteReply(String rpy_num) {
+		
+		
+	}
 }

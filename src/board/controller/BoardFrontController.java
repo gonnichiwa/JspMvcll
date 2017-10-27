@@ -15,6 +15,7 @@ import board.command.BoardDeletePwdFrmCmd;
 import board.command.BoardListCmd;
 import board.command.BoardPasswordChkCmd;
 import board.command.BoardReadCmd;
+import board.command.BoardReplyDeleteCmd;
 import board.command.BoardUpdateCmd;
 import board.command.BoardUpdateFormCmd;
 import board.command.BoardUpdateFrmCmd;
@@ -157,6 +158,13 @@ public class BoardFrontController extends HttpServlet {
 			cmd = new BoardReadCmd();
 			cmd.execute(request, response);
 			viewPage = "/boardRead.bbs";
+		}
+		
+		// 댓글 삭제
+		if(cmdURI.equals("/boardReplyDelete.bbs")){
+			cmd = new BoardReplyDeleteCmd();
+			cmd.execute(request, response);
+//			viewPage="/boardRead.bbs";
 		}
 		
 		
