@@ -164,7 +164,7 @@ public class BoardFrontController extends HttpServlet {
 		if(cmdURI.equals("/boardReplyDelete.bbs")){
 			cmd = new BoardReplyDeleteCmd();
 			cmd.execute(request, response);
-//			viewPage="/boardRead.bbs";
+			viewPage = "/boardRead.bbs";
 		}
 		
 		

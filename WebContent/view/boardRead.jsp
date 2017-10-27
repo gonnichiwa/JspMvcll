@@ -51,7 +51,7 @@
 			${rpyDto.rpy_date } <!-- 댓글 내용 -->
 		</td>
 		<td>
-			<a href="boardReplyDelete.bbs?rpy_num=${rpyDto.rpy_num }">[댓글 삭제]</a>
+			<a href="boardReplyDelete.bbs?rpy_num=${rpyDto.rpy_num }&num=${boardRead.num }">[댓글 삭제]</a>
 		</td>
 	</tr>
 	</c:forEach>

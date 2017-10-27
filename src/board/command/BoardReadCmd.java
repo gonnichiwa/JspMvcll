@@ -42,7 +42,6 @@ public class BoardReadCmd implements BoardCmd {
 		if(rpyList.size() >= 0){
 			request.setAttribute("replyList", rpyList);
 		}
-		
 	}
 
 }

@@ -511,7 +511,27 @@ public class BoardDAO {
 	
 	// 선택 댓글 삭제
 	public void deleteReply(String rpy_num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
-		
+		try {
+			conn = ds.getConnection();
+			String sql = "delete reply where rpy_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(rpy_num));
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
-}
+	
+}// class
