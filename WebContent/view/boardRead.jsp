@@ -41,6 +41,7 @@
 	<c:forEach items="${replyList }" var="rpyDto">
 	<tr>
 		<td>
+			<input type="hidden" name="rpy_num" value="${rpyDto.rpy_num }"/>${rpyDto.rpy_num }
 			${rpyDto.rpy_author } <!-- 댓글 이름 -->
 		</td>
 		<td>
