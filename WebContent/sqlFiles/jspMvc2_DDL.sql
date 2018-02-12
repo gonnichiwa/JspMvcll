@@ -28,3 +28,8 @@ create table reply(
   rpy_parent_num int not null
 );
 
+create sequence seq_rpy_num
+start with 1
+increment by 1
+nomaxvalue
+nocache;
